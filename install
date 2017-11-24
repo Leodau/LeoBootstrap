@@ -1,0 +1,20 @@
+#!/bin/bash
+# LeoBoostrap.
+# By Michele Leo.
+# github.com/Leodau
+#
+# Desc: Moves a "bootstrap" bash file into the ~/bin
+# Usage: sudo ./install
+
+if [ -e ~/bin/bootstrap ]
+then
+	echo "Re-installing LeoBootstrap.."
+	sudo rm ~/bin/bootstrap
+else
+	echo "Installing LeoBootstrap.."
+fi
+sudo chmod +x $PWD/builder/bootstrap
+cp -R $PWD/builder/bootstrap ~/bin/
+sed -i s/installed=0/installed=1/g ~/bin/bootstrap
+sed -i "s?packpath?$PWD?g" ~/bin/bootstrap
+echo "Done."
