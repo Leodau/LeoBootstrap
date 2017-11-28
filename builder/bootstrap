@@ -22,7 +22,6 @@ else
 		sudo sed -i -e "s/=pname=/$name/g" -e "s/=pdate=/$year/g" $PWD/include/main.h
 		sudo sed -i -e "s/=pname=/$name/g" -e "s/=pdate=/$year/g" $PWD/src/main.c
 		sudo sed -i -e "s/=pname=/$name/g" -e "s/=pdate=/$year/g" $PWD/tests/main_test.c
-		sudo sed -i -e "s/=pname=/$name/g" -e "s/=pdate=/$year/g" $PWD/tests/Makefile
 		sudo sed -i "s/=pname=/$name/g" $PWD/.gitignore
 	fi
 fi
