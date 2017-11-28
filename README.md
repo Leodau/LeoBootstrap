@@ -9,7 +9,8 @@ Bootstrap **CORRECTLY** your C projects in just 1 command.
 
 Initialize a project that follows/has:
 * EPITECH's Coding Style.
-* Criterion Basic Example Architecture.
+* Criterion Basic Architecture as example.
+* Code Coverage '.gcda/.gcno' files generation.
 * Complete .gitignore file.
 * .editorconfig file for those using Atom.
 
