@@ -5,11 +5,19 @@
 ## Build =pname= binary.
 ##
 
-SRC	=	src/main.c
+MAIN_SRC	=	src/main.c
 
-OBJ	=	$(SRC:.c=.o)
+SRC	=
 
-CFLAGS	=	-Werror -Wextra -W -Wall -Wparentheses -Wsign-compare -Wpointer-sign -Wuninitialized -Wunused-but-set-variable -I ./include/
+UT_SRC	=	tests/main_test.c
+
+OBJ	=	$(MAIN_SRC:.c=.o) $(SRC:.c=.o)
+
+UT_OBJ	=	$(SRC:.c=.o) $(UT_SRC:.c=.o)
+
+CFLAGS	=	-Werror -Wextra -W -Wall -Wparentheses -Wsign-compare -Wpointer-sign -Wuninitialized -Wunused-but-set-variable -I ./include/ --coverage
+
+LDFLAGS	=	-lcriterion
 
 NAME	=	=pname=
 
@@ -22,8 +30,16 @@ $(NAME):	$(OBJ)
 
 clean:
 	rm -f $(OBJ)
+	rm -f $(UT_OBJ)
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f units
+	find . -name "*.gcda" -type f -delete
+	find . -name "*.gcno" -type f -delete
 
 re: fclean all
+
+test_run:	$(UT_OBJ)
+		gcc -o units $(UT_OBJ) $(LDFLAGS) $(CFLAGS)
+		./units
