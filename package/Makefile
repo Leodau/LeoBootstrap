@@ -15,9 +15,9 @@ OBJ	=	$(MAIN_SRC:.c=.o) $(SRC:.c=.o)
 
 UT_OBJ	=	$(SRC:.c=.o) $(UT_SRC:.c=.o)
 
-CFLAGS	=	-Werror -Wextra -W -Wall -Wparentheses -Wsign-compare -Wpointer-sign -Wuninitialized -Wunused-but-set-variable -I ./include/ --coverage
+CFLAGS	=	-Werror -Wextra -W -Wall -Wparentheses -Wsign-compare -Wpointer-sign -Wuninitialized -Wunused-but-set-variable -I ./include/
 
-LDFLAGS	=	-lcriterion
+LDFLAGS	=	-lcriterion --coverage
 
 NAME	=	=pname=
 
