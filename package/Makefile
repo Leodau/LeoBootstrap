@@ -15,9 +15,9 @@ OBJ	=	$(MAIN_SRC:.c=.o) $(SRC:.c=.o)
 
 UT_OBJ	=	$(SRC:.c=.o) $(UT_SRC:.c=.o)
 
-CFLAGS	=	-Werror -Wextra -W -Wall -Wparentheses -Wsign-compare -Wpointer-sign -Wuninitialized -Wunused-but-set-variable -I ./include/
+CFLAGS	=	-Werror -Wextra -W -Wall -I ./include/
 
-LDFLAGS	=	-lcriterion --coverage
+LDFLAGS	=
 
 NAME	=	=pname=
 
@@ -35,11 +35,17 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	rm -f units
+	rm -f *.html
 	find . -name "*.gcda" -type f -delete
 	find . -name "*.gcno" -type f -delete
 
 re: fclean all
 
+test_run:	CFLAGS += --coverage
+
 test_run:	$(UT_OBJ)
-		gcc -o units $(UT_OBJ) $(LDFLAGS) $(CFLAGS)
+		$(CC) -o units $(UT_OBJ) $(LDFLAGS) -lcriterion --coverage
 		./units
+
+cov:	test_run
+	gcovr -r . --html -o coverage.html --html-details -e ".*tests/.*"
