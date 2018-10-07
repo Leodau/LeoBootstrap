@@ -15,6 +15,10 @@ Initialize a project that follows/has:
 * .editorconfig file for those using Atom.
 
 ## Usage
+
+## Requiered
+A 'bin' directory inside user 'home' directory
+
 ### Install
 Clone this repository and execute :
 ```bash

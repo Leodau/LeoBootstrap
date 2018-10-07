@@ -7,7 +7,7 @@
 
 if [ -z "$1" ]
 then
-	echo "Usage: bootstrap project_name"
+	echo "Usage: bootstrap [project_name] [indent_size] [indent_style]"
 else
 	installed=0
 	if [ $installed == 0 ]
@@ -16,6 +16,8 @@ else
 		echo "Then Usage: bootstrap project_name"
 	else
 		name=$1
+		indent_size=$2
+		indent_style=$3
 		year=`date +%Y`
 		cp -R packpath/package/. $PWD
 		sudo sed -i -e "s/=pname=/$name/g" -e "s/=pdate=/$year/g" $PWD/Makefile
@@ -23,5 +25,7 @@ else
 		sudo sed -i -e "s/=pname=/$name/g" -e "s/=pdate=/$year/g" $PWD/src/main.c
 		sudo sed -i -e "s/=pname=/$name/g" -e "s/=pdate=/$year/g" $PWD/tests/main_test.c
 		sudo sed -i "s/=pname=/$name/g" $PWD/.gitignore
+		sudo sed -i "s/=indent_size=/$indent_size/g" $PWD/.editorconfig
+		sudo sed -i "s/=indent_style=/$indent_style/g" $PWD/.editorconfig
 	fi
 fi
